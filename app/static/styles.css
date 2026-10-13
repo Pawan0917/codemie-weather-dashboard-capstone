@@ -1,0 +1,6 @@
+.container { max-width: 800px; margin: 24px auto; font-family: Arial, sans-serif; }
+.row { margin: 12px 0; display: flex; gap: 8px; align-items: center; }
+.card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; margin: 8px 0; }
+.forecast { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.error { background: #ffe0e0; padding: 10px; border: 1px solid #ff9a9a; border-radius: 8px; margin: 10px 0; }
+.active { font-weight: bold; }

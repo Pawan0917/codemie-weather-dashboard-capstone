@@ -1,0 +1,11 @@
+services:
+  weather:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      WEATHER_API_MODE: "mock"
+      OPENWEATHER_API_KEY: ""
+      FAVORITES_FILE_PATH: "/app/data/favorites.json"
+    volumes:
+      - ./data:/app/data
