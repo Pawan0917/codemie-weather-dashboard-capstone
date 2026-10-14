@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<a href="/">← Back</a>
+
+<h2>{{ bundle.current.city }}{% if bundle.current.country %}, {{ bundle.current.country }}{% endif %}</h2>
+
+<div class="card">
+  <div>Temperature: {{ bundle.current.temperature }} °{{ unit }}</div>
+  <div>Humidity: {{ bundle.current.humidity }}%</div>
+  <div>Wind: {{ bundle.current.wind_speed }}</div>
+  <div>Condition: {{ bundle.current.condition }}</div>
+</div>
+
+<form method="post" action="/favorites/add">
+  <input type="hidden" name="city" value="{{ bundle.current.city }}"/>
+  <input type="hidden" name="country" value="{{ bundle.current.country }}"/>
+  <button type="submit">Add to favorites</button>
+</form>
+
+<h3>5-day forecast</h3>
+<div class="forecast">
+  {% for d in bundle.forecast %}
+    <div class="card">
+      <div>{{ d.date }}</div>
+      <div>{{ d.min_temp }}–{{ d.max_temp }} °{{ unit }}</div>
+      <div>{{ d.condition }}</div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

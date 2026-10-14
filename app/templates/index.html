@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if error %}
+  <div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/weather/search" class="row">
+  <input name="city" placeholder="Enter city (e.g., Pune)" />
+  <button type="submit">Search</button>
+</form>
+
+<form method="post" action="/unit" class="row">
+  <label>Unit:</label>
+  <button name="unit" value="C" {% if unit=="C" %}class="active"{% endif %}>C</button>
+  <button name="unit" value="F" {% if unit=="F" %}class="active"{% endif %}>F</button>
+</form>
+
+<h2>Favorites</h2>
+<ul>
+  {% for f in favorites %}
+    <li>
+      <form method="post" action="/weather/search" style="display:inline;">
+        <input type="hidden" name="city" value="{{ f.city }}"/>
+        <button type="submit">{{ f.city }}{% if f.country %}, {{ f.country }}{% endif %}</button>
+      </form>
+      <form method="post" action="/favorites/remove" style="display:inline;">
+        <input type="hidden" name="city" value="{{ f.city }}"/>
+        <input type="hidden" name="country" value="{{ f.country }}"/>
+        <button type="submit">x</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

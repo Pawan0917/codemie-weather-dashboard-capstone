@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/favorites.json
+playwright-report/
+test-results/
