@@ -1,10 +1,10 @@
-import os
 from fastapi.testclient import TestClient
+import app.routes.settings as settings_module
 from app.main import app
 
 def test_search_flow_mock_mode():
-    # Ensure mock mode for deterministic test
-    os.environ["WEATHER_API_MODE"] = "mock"
+    # Force mock mode BEFORE calling routes (settings is already imported)
+    object.__setattr__(settings_module.settings, "weather_api_mode", "mock")
 
     client = TestClient(app)
 
